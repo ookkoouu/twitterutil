@@ -1,0 +1,159 @@
+{
+	"coordinates": null,
+	"created_at": "Tue Jun 20 22:47:04 +0000 2017",
+	"current_user_retweet": null,
+	"entities": {
+		"hashtags": [],
+		"media": null,
+		"urls": [
+			{
+				"indices": [
+					30,
+					53
+				],
+				"display_url": "bit.ly/2so49n2",
+				"expanded_url": "http://bit.ly/2so49n2",
+				"url": "https://t.co/yzocNFvJuL"
+			}
+		],
+		"user_mentions": []
+	},
+	"favorite_count": 0,
+	"favorited": false,
+	"filter_level": "",
+	"id": 877296772359610371,
+	"id_str": "877296772359610371",
+	"in_reply_to_screen_name": "",
+	"in_reply_to_status_id": 0,
+	"in_reply_to_status_id_str": "",
+	"in_reply_to_user_id": 0,
+	"in_reply_to_user_id_str": "",
+	"lang": "en",
+	"possibly_sensitive": false,
+	"quote_count": 0,
+	"reply_count": 0,
+	"retweet_count": 0,
+	"retweeted": false,
+	"retweeted_status": null,
+	"source": "\u003ca href=\"http://twitter.com\" rel=\"nofollow\"\u003eTwitter Web Client\u003c/a\u003e",
+	"scopes": null,
+	"text": "",
+	"full_text": "A Tweet with a shortened URL: https://t.co/yzocNFvJuL",
+	"display_text_range": [
+		0,
+		53
+	],
+	"place": {
+		"attributes": {},
+		"bounding_box": {
+			"coordinates": [
+				[
+					[
+						-105.3017759,
+						39.953552
+					],
+					[
+						-105.183597,
+						39.953552
+					],
+					[
+						-105.183597,
+						40.094411
+					],
+					[
+						-105.3017759,
+						40.094411
+					]
+				]
+			],
+			"type": "Polygon"
+		},
+		"country": "United States",
+		"country_code": "US",
+		"full_name": "Boulder, CO",
+		"geometry": null,
+		"id": "fd70c22040963ac7",
+		"name": "Boulder",
+		"place_type": "city",
+		"polylines": null,
+		"url": "https://api.twitter.com/1.1/geo/id/fd70c22040963ac7.json"
+	},
+	"truncated": false,
+	"user": {
+		"contributors_enabled": false,
+		"created_at": "Mon Nov 12 19:59:55 +0000 2012",
+		"default_profile": false,
+		"default_profile_image": false,
+		"description": "Exploring @TwitterDev, one demo or test at a time. \n🌍💧❄️☀️ \n🌧️ @FloodSocial notification sign-up bot ❄️ @SnowBotDev",
+		"email": "",
+		"entities": {
+			"url": {
+				"hashtags": null,
+				"media": null,
+				"urls": [
+					{
+						"indices": [
+							0,
+							23
+						],
+						"display_url": "github.com/jimmoffitt/Flo…",
+						"expanded_url": "https://github.com/jimmoffitt/FloodSocial",
+						"url": "https://t.co/POuXe2L3ur"
+					}
+				],
+				"user_mentions": null
+			},
+			"description": {
+				"hashtags": null,
+				"media": null,
+				"urls": [],
+				"user_mentions": null
+			}
+		},
+		"favourites_count": 51,
+		"follow_request_sent": false,
+		"following": false,
+		"followers_count": 85,
+		"friends_count": 22,
+		"geo_enabled": true,
+		"id": 944480690,
+		"id_str": "944480690",
+		"is_translator": false,
+		"lang": "",
+		"listed_count": 4,
+		"location": "Longmont, CO",
+		"name": "API demos",
+		"notifications": false,
+		"profile_background_color": "000000",
+		"profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+		"profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+		"profile_background_tile": false,
+		"profile_banner_url": "https://pbs.twimg.com/profile_banners/944480690/1412809012",
+		"profile_image_url": "http://pbs.twimg.com/profile_images/1162409582213226497/wHPWq9eI_normal.jpg",
+		"profile_image_url_https": "https://pbs.twimg.com/profile_images/1162409582213226497/wHPWq9eI_normal.jpg",
+		"profile_link_color": "7FDBB6",
+		"profile_sidebar_border_color": "000000",
+		"profile_sidebar_fill_color": "000000",
+		"profile_text_color": "000000",
+		"profile_use_background_image": false,
+		"protected": false,
+		"screen_name": "FloodSocial",
+		"show_all_inline_media": false,
+		"status": null,
+		"statuses_count": 274,
+		"time_zone": "",
+		"url": "https://t.co/POuXe2L3ur",
+		"utc_offset": 0,
+		"verified": false,
+		"withheld_in_countries": [],
+		"withheld_scope": ""
+	},
+	"withheld_copyright": false,
+	"withheld_in_countries": null,
+	"withheld_scope": "",
+	"extended_entities": null,
+	"extended_tweet": null,
+	"quoted_status_id": 0,
+	"quoted_status_id_str": "",
+	"quoted_status": null
+}

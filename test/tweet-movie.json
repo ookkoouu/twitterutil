@@ -1,0 +1,266 @@
+{
+	"coordinates": null,
+	"created_at": "Mon May 29 22:22:26 +0000 2017",
+	"current_user_retweet": null,
+	"entities": {
+		"hashtags": [],
+		"media": [
+			{
+				"indices": [
+					31,
+					54
+				],
+				"display_url": "pic.twitter.com/TLSTTOvvmP",
+				"expanded_url": "https://twitter.com/FloodSocial/status/869318041078820864/video/1",
+				"url": "https://t.co/TLSTTOvvmP",
+				"id": 869317980307415040,
+				"id_str": "869317980307415040",
+				"media_url": "http://pbs.twimg.com/ext_tw_video_thumb/869317980307415040/pu/img/t_E6wyADk_PvxuzF.jpg",
+				"media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/869317980307415040/pu/img/t_E6wyADk_PvxuzF.jpg",
+				"source_status_id": 0,
+				"source_status_id_str": "",
+				"type": "photo",
+				"sizes": {
+					"thumb": {
+						"w": 150,
+						"h": 150,
+						"resize": "crop"
+					},
+					"large": {
+						"w": 720,
+						"h": 1280,
+						"resize": "fit"
+					},
+					"medium": {
+						"w": 675,
+						"h": 1200,
+						"resize": "fit"
+					},
+					"small": {
+						"w": 383,
+						"h": 680,
+						"resize": "fit"
+					}
+				},
+				"video_info": {
+					"aspect_ratio": [
+						0,
+						0
+					],
+					"duration_millis": 0,
+					"variants": null
+				}
+			}
+		],
+		"urls": [],
+		"user_mentions": []
+	},
+	"favorite_count": 2,
+	"favorited": false,
+	"filter_level": "",
+	"id": 869318041078820864,
+	"id_str": "869318041078820864",
+	"in_reply_to_screen_name": "",
+	"in_reply_to_status_id": 0,
+	"in_reply_to_status_id_str": "",
+	"in_reply_to_user_id": 0,
+	"in_reply_to_user_id_str": "",
+	"lang": "fr",
+	"possibly_sensitive": false,
+	"quote_count": 0,
+	"reply_count": 0,
+	"retweet_count": 1,
+	"retweeted": false,
+	"retweeted_status": null,
+	"source": "\u003ca href=\"http://twitter.com/download/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c/a\u003e",
+	"scopes": null,
+	"text": "",
+	"full_text": "St. Vrain River @ Crane Hollow https://t.co/TLSTTOvvmP",
+	"display_text_range": [
+		0,
+		30
+	],
+	"place": {
+		"attributes": {},
+		"bounding_box": {
+			"coordinates": [
+				[
+					[
+						-105.178296,
+						40.188849
+					],
+					[
+						-105.178296,
+						40.188849
+					],
+					[
+						-105.178296,
+						40.188849
+					],
+					[
+						-105.178296,
+						40.188849
+					]
+				]
+			],
+			"type": "Polygon"
+		},
+		"country": "United States",
+		"country_code": "US",
+		"full_name": "Mary's Market \u0026 Deli",
+		"geometry": null,
+		"id": "07d9e724e9483001",
+		"name": "Mary's Market \u0026 Deli",
+		"place_type": "poi",
+		"polylines": null,
+		"url": "https://api.twitter.com/1.1/geo/id/07d9e724e9483001.json"
+	},
+	"truncated": false,
+	"user": {
+		"contributors_enabled": false,
+		"created_at": "Mon Nov 12 19:59:55 +0000 2012",
+		"default_profile": false,
+		"default_profile_image": false,
+		"description": "Exploring @TwitterDev, one demo or test at a time. \n🌍💧❄️☀️ \n🌧️ @FloodSocial notification sign-up bot ❄️ @SnowBotDev",
+		"email": "",
+		"entities": {
+			"url": {
+				"hashtags": null,
+				"media": null,
+				"urls": [
+					{
+						"indices": [
+							0,
+							23
+						],
+						"display_url": "github.com/jimmoffitt/Flo…",
+						"expanded_url": "https://github.com/jimmoffitt/FloodSocial",
+						"url": "https://t.co/POuXe2L3ur"
+					}
+				],
+				"user_mentions": null
+			},
+			"description": {
+				"hashtags": null,
+				"media": null,
+				"urls": [],
+				"user_mentions": null
+			}
+		},
+		"favourites_count": 51,
+		"follow_request_sent": false,
+		"following": false,
+		"followers_count": 85,
+		"friends_count": 22,
+		"geo_enabled": true,
+		"id": 944480690,
+		"id_str": "944480690",
+		"is_translator": false,
+		"lang": "",
+		"listed_count": 4,
+		"location": "Longmont, CO",
+		"name": "API demos",
+		"notifications": false,
+		"profile_background_color": "000000",
+		"profile_background_image_url": "http://abs.twimg.com/images/themes/theme1/bg.png",
+		"profile_background_image_url_https": "https://abs.twimg.com/images/themes/theme1/bg.png",
+		"profile_background_tile": false,
+		"profile_banner_url": "https://pbs.twimg.com/profile_banners/944480690/1412809012",
+		"profile_image_url": "http://pbs.twimg.com/profile_images/1162409582213226497/wHPWq9eI_normal.jpg",
+		"profile_image_url_https": "https://pbs.twimg.com/profile_images/1162409582213226497/wHPWq9eI_normal.jpg",
+		"profile_link_color": "7FDBB6",
+		"profile_sidebar_border_color": "000000",
+		"profile_sidebar_fill_color": "000000",
+		"profile_text_color": "000000",
+		"profile_use_background_image": false,
+		"protected": false,
+		"screen_name": "FloodSocial",
+		"show_all_inline_media": false,
+		"status": null,
+		"statuses_count": 274,
+		"time_zone": "",
+		"url": "https://t.co/POuXe2L3ur",
+		"utc_offset": 0,
+		"verified": false,
+		"withheld_in_countries": [],
+		"withheld_scope": ""
+	},
+	"withheld_copyright": false,
+	"withheld_in_countries": null,
+	"withheld_scope": "",
+	"extended_entities": {
+		"media": [
+			{
+				"indices": [
+					31,
+					54
+				],
+				"display_url": "pic.twitter.com/TLSTTOvvmP",
+				"expanded_url": "https://twitter.com/FloodSocial/status/869318041078820864/video/1",
+				"url": "https://t.co/TLSTTOvvmP",
+				"id": 869317980307415040,
+				"id_str": "869317980307415040",
+				"media_url": "http://pbs.twimg.com/ext_tw_video_thumb/869317980307415040/pu/img/t_E6wyADk_PvxuzF.jpg",
+				"media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/869317980307415040/pu/img/t_E6wyADk_PvxuzF.jpg",
+				"source_status_id": 0,
+				"source_status_id_str": "",
+				"type": "video",
+				"sizes": {
+					"thumb": {
+						"w": 150,
+						"h": 150,
+						"resize": "crop"
+					},
+					"large": {
+						"w": 720,
+						"h": 1280,
+						"resize": "fit"
+					},
+					"medium": {
+						"w": 675,
+						"h": 1200,
+						"resize": "fit"
+					},
+					"small": {
+						"w": 383,
+						"h": 680,
+						"resize": "fit"
+					}
+				},
+				"video_info": {
+					"aspect_ratio": [
+						9,
+						16
+					],
+					"duration_millis": 10704,
+					"variants": [
+						{
+							"content_type": "video/mp4",
+							"bitrate": 2176000,
+							"url": "https://video.twimg.com/ext_tw_video/869317980307415040/pu/vid/720x1280/octt5pFbISkef8RB.mp4"
+						},
+						{
+							"content_type": "video/mp4",
+							"bitrate": 256000,
+							"url": "https://video.twimg.com/ext_tw_video/869317980307415040/pu/vid/180x320/FMei8yCw7yc_Z7e-.mp4"
+						},
+						{
+							"content_type": "video/mp4",
+							"bitrate": 832000,
+							"url": "https://video.twimg.com/ext_tw_video/869317980307415040/pu/vid/360x640/2OmqK74SQ9jNX8mZ.mp4"
+						},
+						{
+							"content_type": "application/x-mpegURL",
+							"bitrate": 0,
+							"url": "https://video.twimg.com/ext_tw_video/869317980307415040/pu/pl/wcJQJ2nxiFU4ZZng.m3u8"
+						}
+					]
+				}
+			}
+		]
+	},
+	"extended_tweet": null,
+	"quoted_status_id": 0,
+	"quoted_status_id_str": "",
+	"quoted_status": null
+}
