@@ -93,6 +93,28 @@ func GetMediaUrls(tweet twitter.Tweet) (urls []MediaUrl) {
 	return urls
 }
 
+func GetMediaUrlsString(tweet twitter.Tweet) (urls []string) {
+	urls = make([]string, 0, 4)
+	if tweet.ExtendedEntities == nil {
+		return
+	}
+
+	medias := tweet.ExtendedEntities.Media
+	for _, media := range medias {
+		switch {
+
+		// photo
+		case len(media.VideoInfo.Variants) == 0:
+			urls = append(urls, media.MediaURLHttps)
+		
+		// video animated_gif
+		case len(media.VideoInfo.Variants) > 0:
+			urls = append(urls, GetVideoUrl(media))
+		}
+	}
+	return urls
+}
+
 func HasMedia(tweet twitter.Tweet) bool {
 	return tweet.ExtendedEntities != nil && len(tweet.ExtendedEntities.Media) > 0
 }

@@ -173,7 +173,59 @@ func TestGetMediaUrls(t *testing.T) {
 	}
 }
 
-func TestHasMedia(t *testing.T){
+func TestGetMediaUrlsString(t *testing.T) {
+	tweets, err := createDummyTweet()
+	if err != nil {
+		assert.Fail(t, "cannot create dummy tweet.")
+	}
+
+	type args struct {
+		tweet twitter.Tweet
+	}
+	tests := []struct {
+		name string
+		args args
+		want []string
+	}{
+		{
+			name: "gif",
+			args: args{*tweets["gif"]},
+			want: []string{
+				"https://video.twimg.com/tweet_video/DBMDLy_U0AAqUWP.mp4",
+			},
+		},
+		{
+			name: "linked",
+			args: args{*tweets["linked"]},
+			want: []string{
+				
+			},
+		},
+		{
+			name: "movie",
+			args: args{*tweets["movie"]},
+			want: []string{
+				"https://video.twimg.com/ext_tw_video/869317980307415040/pu/vid/720x1280/octt5pFbISkef8RB.mp4",
+			},
+		},
+		{
+			name: "photo",
+			args: args{*tweets["photo"]},
+			want: []string{
+				"https://pbs.twimg.com/media/C_UdnvPUwAE3Dnn.jpg",
+				"https://pbs.twimg.com/media/C_UdnvPVYAAZbEs.jpg",
+				"https://pbs.twimg.com/media/C_Udn2UUQAADZIS.jpg",
+				"https://pbs.twimg.com/media/C_Udn4nUMAAgcIa.jpg",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(t, tt.want, GetMediaUrlsString(tt.args.tweet))
+	}
+}
+
+func TestHasMedia(t *testing.T) {
 	tweets, err := createDummyTweet()
 	if err != nil {
 		assert.Fail(t, "cannot create dummy tweet.")
