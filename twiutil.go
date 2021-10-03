@@ -1,4 +1,4 @@
-package twitterutil
+package twiutil
 
 import (
 	urlmod "net/url"
@@ -52,23 +52,24 @@ func GetVideoUrl(media twitter.MediaEntity) (url string) {
 		return
 	}
 
-	variants := make([]twitter.VideoVariant, 1, 4)
+	variants := make([]twitter.VideoVariant, 0, 4)
 	for _, v := range media.VideoInfo.Variants {
 		if v.ContentType == "video/mp4" {
 			variants = append(variants, v)
 		}
 	}
 	sort.Slice(variants, func(h, f int) bool { return variants[h].Bitrate > variants[f].Bitrate })
+
 	url = variants[0].URL
 	return
 }
 
 func GetMediaUrls(tweet twitter.Tweet) (urls []MediaUrl) {
-	if len(tweet.ExtendedEntities.Media) == 0 {
+	urls = make([]MediaUrl, 0, 4)
+	if tweet.ExtendedEntities == nil {
 		return
 	}
 
-	urls = make([]MediaUrl, 0, 4)
 	medias := tweet.ExtendedEntities.Media
 	for _, media := range medias {
 		switch {
@@ -93,5 +94,5 @@ func GetMediaUrls(tweet twitter.Tweet) (urls []MediaUrl) {
 }
 
 func HasMedia(tweet twitter.Tweet) bool {
-	return len(tweet.ExtendedEntities.Media) > 0
+	return tweet.ExtendedEntities != nil && len(tweet.ExtendedEntities.Media) > 0
 }
