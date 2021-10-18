@@ -110,7 +110,7 @@ func TestFindId(t *testing.T) {
 	}
 }
 
-func TestFindUrl(t *testing.T) {
+func TestFindUrlAll(t *testing.T) {
 	type args struct {
 		url string
 	}
@@ -133,6 +133,11 @@ func TestFindUrl(t *testing.T) {
 			name: "short",
 			args: args{url: "asdfhhttp://twitter.com/status/861627479294746624?s=afw"},
 			want: []string{"http://twitter.com/status/861627479294746624"},
+		},
+		{
+			name: "multi",
+			args: args{url: "https://twitter.com/FloodSocial/status/1440105622737854464?s=20asdfhhttp://twitter.com/status/861627479294746624?s=afw"},
+			want: []string{"https://twitter.com/FloodSocial/status/1440105622737854464", "http://twitter.com/status/861627479294746624"},
 		},
 	}
 
