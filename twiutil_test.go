@@ -43,6 +43,42 @@ func createDummyTweet() (map[string]*twitter.Tweet, error) {
 	return tweets, nil
 }
 
+func TestFindIdAll(t *testing.T) {
+	type args struct {
+		url string
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int64
+	}{
+		{
+			name: "normal",
+			args: args{url: "asdfhttps://twitter.com/FloodSocial/status/861627479294746624giuewr"},
+			want: []int64{861627479294746624},
+		},
+		{
+			name: "query",
+			args: args{url: "asdfghhttps://twitter.com/i/statuses/861627479294746624?s=20"},
+			want: []int64{861627479294746624},
+		},
+		{
+			name: "short",
+			args: args{url: "http://twitter.com/status/861627479294746624"},
+			want: []int64{861627479294746624},
+		},
+		{
+			name: "multi",
+			args: args{url: "https://twitter.com/FloodSocial/status/1440105622737854464?s=20\nasdfhhttp://twitter.com/status/861627479294746624?s=afw"},
+			want: []int64{1440105622737854464, 861627479294746624},
+		},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(t, tt.want, FindIdAll(tt.args.url))
+	}
+}
+
 func TestFindId(t *testing.T) {
 	type args struct {
 		url string
@@ -197,9 +233,7 @@ func TestGetMediaUrlsString(t *testing.T) {
 		{
 			name: "linked",
 			args: args{*tweets["linked"]},
-			want: []string{
-				
-			},
+			want: []string{},
 		},
 		{
 			name: "movie",
