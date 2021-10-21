@@ -1,4 +1,4 @@
-module github.com/ookkoouu/twiutil
+module github.com/ookkoouu/twiutil/v2
 
 go 1.17
 
