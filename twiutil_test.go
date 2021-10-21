@@ -216,7 +216,7 @@ func TestGetMediaUrls(t *testing.T) {
 		{
 			name: "linked",
 			args: args{tweets["linked"]},
-			want: []string{},
+			want: nil,
 		},
 		{
 			name: "movie",
@@ -264,7 +264,7 @@ func TestGetMediaTypes(t *testing.T) {
 		{
 			name: "linked",
 			args: args{tweets["linked"]},
-			want: []string{},
+			want: nil,
 		},
 		{
 			name: "movie",

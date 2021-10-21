@@ -21,7 +21,6 @@ func FindIdAll(s string) (ids []int64) {
 		return
 	}
 
-	ids = make([]int64, 0)
 	for _, uStr := range urlsStr {
 		url, _ := urlmod.Parse(uStr)
 		idStr := url.Path[strings.LastIndex(url.Path, "/")+1:]
@@ -60,7 +59,6 @@ func GetVideoUrl(media twitter.MediaEntity) (url string) {
 }
 
 func GetMediaUrls(tweet *twitter.Tweet) (urls []string) {
-	urls = make([]string, 0)
 	if !HasMedia(tweet) {
 		return
 	}
@@ -81,7 +79,6 @@ func GetMediaUrls(tweet *twitter.Tweet) (urls []string) {
 }
 
 func GetMediaTypes(tweet *twitter.Tweet) (types []string) {
-	types = make([]string, 0)
 	if !HasMedia(tweet) {
 		return
 	}
