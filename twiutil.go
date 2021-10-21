@@ -59,8 +59,8 @@ func GetVideoUrl(media twitter.MediaEntity) (url string) {
 	return
 }
 
-func GetMediaUrlsString(tweet twitter.Tweet) (urls []string) {
-	urls = make([]string, 0, 4)
+func GetMediaUrls(tweet twitter.Tweet) (urls []string) {
+	urls = make([]string, 0)
 	if tweet.ExtendedEntities == nil {
 		return
 	}
@@ -68,7 +68,6 @@ func GetMediaUrlsString(tweet twitter.Tweet) (urls []string) {
 	medias := tweet.ExtendedEntities.Media
 	for _, media := range medias {
 		switch {
-
 		// photo
 		case len(media.VideoInfo.Variants) == 0:
 			urls = append(urls, media.MediaURLHttps)

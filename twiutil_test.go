@@ -146,7 +146,7 @@ func TestFindUrlAll(t *testing.T) {
 	}
 }
 
-func TestGetMediaUrlsString(t *testing.T) {
+func TestGetMediaUrls(t *testing.T) {
 	tweets, err := createDummyTweet()
 	if err != nil {
 		assert.Fail(t, "cannot create dummy tweet.")
@@ -192,7 +192,7 @@ func TestGetMediaUrlsString(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, GetMediaUrlsString(tt.args.tweet))
+		assert.Equal(t, tt.want, GetMediaUrls(tt.args.tweet))
 	}
 }
 
