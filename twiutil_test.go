@@ -86,7 +86,7 @@ func TestHasMedia(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, HasMedia(tt.args.tweet))
+		assert.Equal(t, tt.want, HasMedia(tt.args.tweet), tt.name)
 	}
 }
 
@@ -122,7 +122,7 @@ func TestFindUrlAll(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, FindUrlAll(tt.args.url))
+		assert.Equal(t, tt.want, FindUrlAll(tt.args.url), tt.name)
 	}
 }
 
@@ -158,7 +158,7 @@ func TestFindIdAll(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, FindIdAll(tt.args.url))
+		assert.Equal(t, tt.want, FindIdAll(tt.args.url), tt.name)
 	}
 }
 
@@ -189,7 +189,7 @@ func TestFindId(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, FindId(tt.args.url))
+		assert.Equal(t, tt.want, FindId(tt.args.url), tt.name)
 	}
 }
 
@@ -253,7 +253,7 @@ func TestGetMediaUrls(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, GetMediaUrls(tt.args.tweet))
+		assert.Equal(t, tt.want, GetMediaUrls(tt.args.tweet), tt.name)
 	}
 }
 
@@ -313,7 +313,7 @@ func TestGetMediaTypes(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, GetMediaTypes(tt.args.tweet))
+		assert.Equal(t, tt.want, GetMediaTypes(tt.args.tweet), tt.name)
 	}
 }
 
@@ -354,7 +354,7 @@ func TestHasQuotedTweet(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, HasQuotedTweet(tt.args.tweet), tt.name, tt.args.tweet)
+		assert.Equal(t, tt.want, HasQuotedTweet(tt.args.tweet), tt.name)
 	}
 }
 
@@ -395,6 +395,6 @@ func TestGetSource(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, GetSource(tt.args.tweet), tt.name, tt.args.tweet)
+		assert.Equal(t, tt.want, GetSource(tt.args.tweet), tt.name)
 	}
 }
