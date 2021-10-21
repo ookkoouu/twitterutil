@@ -42,11 +42,6 @@ func FindId(s string) (id int64) {
 	return
 }
 
-type MediaUrl struct {
-	Url  string
-	Type string
-}
-
 func GetVideoUrl(media twitter.MediaEntity) (url string) {
 	if len(media.VideoInfo.Variants) == 0 {
 		return
@@ -62,35 +57,6 @@ func GetVideoUrl(media twitter.MediaEntity) (url string) {
 
 	url = variants[0].URL
 	return
-}
-
-func GetMediaUrls(tweet twitter.Tweet) (urls []MediaUrl) {
-	urls = make([]MediaUrl, 0, 4)
-	if tweet.ExtendedEntities == nil {
-		return
-	}
-
-	medias := tweet.ExtendedEntities.Media
-	for _, media := range medias {
-		switch {
-
-		case len(media.VideoInfo.Variants) == 0:
-			u := MediaUrl{
-				Url:  media.MediaURLHttps,
-				Type: media.Type,
-			}
-			urls = append(urls, u)
-
-		case len(media.VideoInfo.Variants) > 0:
-			u := MediaUrl{
-				Url:  GetVideoUrl(media),
-				Type: media.Type,
-			}
-			urls = append(urls, u)
-
-		}
-	}
-	return urls
 }
 
 func GetMediaUrlsString(tweet twitter.Tweet) (urls []string) {
