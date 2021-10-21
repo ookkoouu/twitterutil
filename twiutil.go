@@ -61,7 +61,7 @@ func GetVideoUrl(media twitter.MediaEntity) (url string) {
 
 func GetMediaUrls(tweet twitter.Tweet) (urls []string) {
 	urls = make([]string, 0)
-	if tweet.ExtendedEntities == nil {
+	if !HasMedia(tweet) {
 		return
 	}
 
@@ -82,7 +82,7 @@ func GetMediaUrls(tweet twitter.Tweet) (urls []string) {
 
 func GetMediaTypes(tweet twitter.Tweet) (types []string) {
 	types = make([]string, 0)
-	if tweet.ExtendedEntities == nil {
+	if !HasMedia(tweet) {
 		return
 	}
 

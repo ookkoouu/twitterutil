@@ -43,6 +43,88 @@ func createDummyTweet() (map[string]*twitter.Tweet, error) {
 	return tweets, nil
 }
 
+func TestHasMedia(t *testing.T) {
+	tweets, err := createDummyTweet()
+	if err != nil {
+		assert.Fail(t, "cannot create dummy tweet.")
+	}
+
+	type args struct {
+		tweet twitter.Tweet
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "gif",
+			args: args{*tweets["gif"]},
+			want: true,
+		},
+		{
+			name: "linked",
+			args: args{*tweets["linked"]},
+			want: false,
+		},
+		{
+			name: "movie",
+			args: args{*tweets["movie"]},
+			want: true,
+		},
+		{
+			name: "photo",
+			args: args{*tweets["photo"]},
+			want: true,
+		},
+		{
+			name: "quoted",
+			args: args{*tweets["quoted"]},
+			want: false,
+		},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(t, tt.want, HasMedia(tt.args.tweet))
+	}
+}
+
+func TestFindUrlAll(t *testing.T) {
+	type args struct {
+		url string
+	}
+	tests := []struct {
+		name string
+		args args
+		want []string
+	}{
+		{
+			name: "normal",
+			args: args{url: "asdfhttps://twitter.com/FloodSocial/status/861627479294746624giuewr"},
+			want: []string{"https://twitter.com/FloodSocial/status/861627479294746624"},
+		},
+		{
+			name: "query",
+			args: args{url: "asdfghhttps://twitter.com/i/statuses/861627479294746624?s=20"},
+			want: []string{"https://twitter.com/i/statuses/861627479294746624"},
+		},
+		{
+			name: "short",
+			args: args{url: "asdfhhttp://twitter.com/status/861627479294746624?s=afw"},
+			want: []string{"http://twitter.com/status/861627479294746624"},
+		},
+		{
+			name: "multi",
+			args: args{url: "https://twitter.com/FloodSocial/status/1440105622737854464?s=20asdfhhttp://twitter.com/status/861627479294746624?s=afw"},
+			want: []string{"https://twitter.com/FloodSocial/status/1440105622737854464", "http://twitter.com/status/861627479294746624"},
+		},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(t, tt.want, FindUrlAll(tt.args.url))
+	}
+}
+
 func TestFindIdAll(t *testing.T) {
 	type args struct {
 		url string
@@ -107,42 +189,6 @@ func TestFindId(t *testing.T) {
 
 	for _, tt := range tests {
 		assert.Equal(t, tt.want, FindId(tt.args.url))
-	}
-}
-
-func TestFindUrlAll(t *testing.T) {
-	type args struct {
-		url string
-	}
-	tests := []struct {
-		name string
-		args args
-		want []string
-	}{
-		{
-			name: "normal",
-			args: args{url: "asdfhttps://twitter.com/FloodSocial/status/861627479294746624giuewr"},
-			want: []string{"https://twitter.com/FloodSocial/status/861627479294746624"},
-		},
-		{
-			name: "query",
-			args: args{url: "asdfghhttps://twitter.com/i/statuses/861627479294746624?s=20"},
-			want: []string{"https://twitter.com/i/statuses/861627479294746624"},
-		},
-		{
-			name: "short",
-			args: args{url: "asdfhhttp://twitter.com/status/861627479294746624?s=afw"},
-			want: []string{"http://twitter.com/status/861627479294746624"},
-		},
-		{
-			name: "multi",
-			args: args{url: "https://twitter.com/FloodSocial/status/1440105622737854464?s=20asdfhhttp://twitter.com/status/861627479294746624?s=afw"},
-			want: []string{"https://twitter.com/FloodSocial/status/1440105622737854464", "http://twitter.com/status/861627479294746624"},
-		},
-	}
-
-	for _, tt := range tests {
-		assert.Equal(t, tt.want, FindUrlAll(tt.args.url))
 	}
 }
 
@@ -239,51 +285,5 @@ func TestGetMediaTypes(t *testing.T) {
 
 	for _, tt := range tests {
 		assert.Equal(t, tt.want, GetMediaTypes(tt.args.tweet))
-	}
-}
-
-func TestHasMedia(t *testing.T) {
-	tweets, err := createDummyTweet()
-	if err != nil {
-		assert.Fail(t, "cannot create dummy tweet.")
-	}
-
-	type args struct {
-		tweet twitter.Tweet
-	}
-	tests := []struct {
-		name string
-		args args
-		want bool
-	}{
-		{
-			name: "gif",
-			args: args{*tweets["gif"]},
-			want: true,
-		},
-		{
-			name: "linked",
-			args: args{*tweets["linked"]},
-			want: false,
-		},
-		{
-			name: "movie",
-			args: args{*tweets["movie"]},
-			want: true,
-		},
-		{
-			name: "photo",
-			args: args{*tweets["photo"]},
-			want: true,
-		},
-		{
-			name: "quoted",
-			args: args{*tweets["quoted"]},
-			want: false,
-		},
-	}
-
-	for _, tt := range tests {
-		assert.Equal(t, tt.want, HasMedia(tt.args.tweet))
 	}
 }
