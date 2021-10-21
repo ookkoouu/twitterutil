@@ -50,7 +50,7 @@ func TestHasMedia(t *testing.T) {
 	}
 
 	type args struct {
-		tweet twitter.Tweet
+		tweet *twitter.Tweet
 	}
 	tests := []struct {
 		name string
@@ -59,27 +59,27 @@ func TestHasMedia(t *testing.T) {
 	}{
 		{
 			name: "gif",
-			args: args{*tweets["gif"]},
+			args: args{tweets["gif"]},
 			want: true,
 		},
 		{
 			name: "linked",
-			args: args{*tweets["linked"]},
+			args: args{tweets["linked"]},
 			want: false,
 		},
 		{
 			name: "movie",
-			args: args{*tweets["movie"]},
+			args: args{tweets["movie"]},
 			want: true,
 		},
 		{
 			name: "photo",
-			args: args{*tweets["photo"]},
+			args: args{tweets["photo"]},
 			want: true,
 		},
 		{
 			name: "quoted",
-			args: args{*tweets["quoted"]},
+			args: args{tweets["quoted"]},
 			want: false,
 		},
 	}
@@ -199,7 +199,7 @@ func TestGetMediaUrls(t *testing.T) {
 	}
 
 	type args struct {
-		tweet twitter.Tweet
+		tweet *twitter.Tweet
 	}
 	tests := []struct {
 		name string
@@ -208,26 +208,26 @@ func TestGetMediaUrls(t *testing.T) {
 	}{
 		{
 			name: "gif",
-			args: args{*tweets["gif"]},
+			args: args{tweets["gif"]},
 			want: []string{
 				"https://video.twimg.com/tweet_video/DBMDLy_U0AAqUWP.mp4",
 			},
 		},
 		{
 			name: "linked",
-			args: args{*tweets["linked"]},
+			args: args{tweets["linked"]},
 			want: []string{},
 		},
 		{
 			name: "movie",
-			args: args{*tweets["movie"]},
+			args: args{tweets["movie"]},
 			want: []string{
 				"https://video.twimg.com/ext_tw_video/869317980307415040/pu/vid/720x1280/octt5pFbISkef8RB.mp4",
 			},
 		},
 		{
 			name: "photo",
-			args: args{*tweets["photo"]},
+			args: args{tweets["photo"]},
 			want: []string{
 				"https://pbs.twimg.com/media/C_UdnvPUwAE3Dnn.jpg",
 				"https://pbs.twimg.com/media/C_UdnvPVYAAZbEs.jpg",
@@ -249,7 +249,7 @@ func TestGetMediaTypes(t *testing.T) {
 	}
 
 	type args struct {
-		tweet twitter.Tweet
+		tweet *twitter.Tweet
 	}
 	tests := []struct {
 		name string
@@ -258,22 +258,22 @@ func TestGetMediaTypes(t *testing.T) {
 	}{
 		{
 			name: "gif",
-			args: args{*tweets["gif"]},
+			args: args{tweets["gif"]},
 			want: []string{"animated_gif"},
 		},
 		{
 			name: "linked",
-			args: args{*tweets["linked"]},
+			args: args{tweets["linked"]},
 			want: []string{},
 		},
 		{
 			name: "movie",
-			args: args{*tweets["movie"]},
+			args: args{tweets["movie"]},
 			want: []string{"video"},
 		},
 		{
 			name: "photo",
-			args: args{*tweets["photo"]},
+			args: args{tweets["photo"]},
 			want: []string{
 				"photo",
 				"photo",
