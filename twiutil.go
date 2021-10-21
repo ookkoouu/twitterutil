@@ -10,6 +10,11 @@ import (
 	"github.com/dghubble/go-twitter/twitter"
 )
 
+func GetTweet(client *twitter.Client, id int64) (tweet *twitter.Tweet, err error) {
+	tweet, _, err = client.Statuses.Show(id, &twitter.StatusShowParams{TweetMode: "extended"})
+	return
+}
+
 func FindUrlAll(text string) (urls []string) {
 	regexTwitterUrl := regexp.MustCompile(`https?://twitter\.com(/\w+)?/status(es)?/\d+`)
 	return regexTwitterUrl.FindAllString(text, -1)
