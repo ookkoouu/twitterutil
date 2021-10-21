@@ -106,3 +106,10 @@ func HasQuotedTweet(tweet *twitter.Tweet) bool {
 		return true
 	}
 }
+
+func GetQuotedTweetUrl(tweet *twitter.Tweet) string {
+	if !HasQuotedTweet(tweet) {
+		return ""
+	}
+	return "https://twitter.com/i/status/" + tweet.QuotedStatusIDStr
+}
