@@ -1,83 +1,68 @@
 {
 	"coordinates": null,
-	"created_at": "Wed Aug 31 20:46:59 +0000 2016",
+	"created_at": "Fri May 19 16:24:47 +0000 2017",
 	"current_user_retweet": null,
 	"entities": {
-		"hashtags": [],
+		"hashtags": [
+			{
+				"indices": [
+					82,
+					89
+				],
+				"text": "Hastag"
+			}
+		],
 		"media": null,
 		"urls": [
 			{
 				"indices": [
-					6,
-					29
+					116,
+					139
 				],
-				"display_url": "twitter.com/floodsocial/st…",
-				"expanded_url": "https://twitter.com/floodsocial/status/771086722629111809",
-				"url": "https://t.co/lv2KC7kqmW"
+				"display_url": "twitter.com/FloodSocial/st…",
+				"expanded_url": "https://twitter.com/FloodSocial/status/861627479294746624",
+				"url": "https://t.co/FwuQVeNOHn"
 			}
 		],
-		"user_mentions": []
+		"user_mentions": [
+			{
+				"indices": [
+					60,
+					68
+				],
+				"id": 435854974,
+				"id_str": "435854974",
+				"name": "Mention",
+				"screen_name": "Mention"
+			}
+		]
 	},
-	"favorite_count": 0,
+	"favorite_count": 4,
 	"favorited": false,
 	"filter_level": "",
-	"id": 771086906142580737,
-	"id_str": "771086906142580737",
+	"id": 865604154676432896,
+	"id_str": "865604154676432896",
 	"in_reply_to_screen_name": "",
 	"in_reply_to_status_id": 0,
 	"in_reply_to_status_id_str": "",
 	"in_reply_to_user_id": 0,
 	"in_reply_to_user_id_str": "",
-	"lang": "es",
+	"lang": "en",
 	"possibly_sensitive": false,
 	"quote_count": 0,
 	"reply_count": 0,
-	"retweet_count": 0,
+	"retweet_count": 1,
 	"retweeted": false,
 	"retweeted_status": null,
-	"source": "\u003ca href=\"http://twitter.com/download/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c/a\u003e",
+	"source": "\u003ca href=\"http://twitter.com\" rel=\"nofollow\"\u003eTwitter Web Client\u003c/a\u003e",
 	"scopes": null,
 	"text": "",
-	"full_text": "Bingo https://t.co/lv2KC7kqmW",
+	"full_text": "So this is a Quoted Tweet of an 'original' Tweet that has a @Mention,  $Symbol, a #Hastag and four attached photos. https://t.co/FwuQVeNOHn",
 	"display_text_range": [
 		0,
-		29
+		115
 	],
-	"place": {
-		"attributes": {},
-		"bounding_box": {
-			"coordinates": [
-				[
-					[
-						-105.178564,
-						40.125504
-					],
-					[
-						-105.045869,
-						40.125504
-					],
-					[
-						-105.045869,
-						40.206357
-					],
-					[
-						-105.178564,
-						40.206357
-					]
-				]
-			],
-			"type": "Polygon"
-		},
-		"country": "United States",
-		"country_code": "US",
-		"full_name": "Longmont, CO",
-		"geometry": null,
-		"id": "2736a5db074e8201",
-		"name": "Longmont",
-		"place_type": "city",
-		"polylines": null,
-		"url": "https://api.twitter.com/1.1/geo/id/2736a5db074e8201.json"
-	},
+	"place": null,
 	"truncated": false,
 	"user": {
 		"contributors_enabled": false,
@@ -140,7 +125,7 @@
 		"screen_name": "FloodSocial",
 		"show_all_inline_media": false,
 		"status": null,
-		"statuses_count": 274,
+		"statuses_count": 276,
 		"time_zone": "",
 		"url": "https://t.co/POuXe2L3ur",
 		"utc_offset": 0,
@@ -153,31 +138,105 @@
 	"withheld_scope": "",
 	"extended_entities": null,
 	"extended_tweet": null,
-	"quoted_status_id": 771086722629111809,
-	"quoted_status_id_str": "771086722629111809",
+	"quoted_status_id": 861627479294746624,
+	"quoted_status_id_str": "861627479294746624",
 	"quoted_status": {
-		"coordinates": null,
-		"created_at": "Wed Aug 31 20:46:15 +0000 2016",
+		"coordinates": {
+			"coordinates": [
+				-105.14292217,
+				40.200895
+			],
+			"type": "Point"
+		},
+		"created_at": "Mon May 08 17:02:53 +0000 2017",
 		"current_user_retweet": null,
 		"entities": {
 			"hashtags": [
 				{
 					"indices": [
-						75,
-						84
+						59,
+						67
 					],
-					"text": "iot_test"
+					"text": "hashtag"
 				}
 			],
-			"media": null,
-			"urls": [],
-			"user_mentions": []
+			"media": [
+				{
+					"indices": [
+						68,
+						91
+					],
+					"display_url": "pic.twitter.com/9r69akA484",
+					"expanded_url": "https://twitter.com/FloodSocial/status/861627479294746624/photo/1",
+					"url": "https://t.co/9r69akA484",
+					"id": 861627472244162561,
+					"id_str": "861627472244162561",
+					"media_url": "http://pbs.twimg.com/media/C_UdnvPUwAE3Dnn.jpg",
+					"media_url_https": "https://pbs.twimg.com/media/C_UdnvPUwAE3Dnn.jpg",
+					"source_status_id": 0,
+					"source_status_id_str": "",
+					"type": "photo",
+					"sizes": {
+						"thumb": {
+							"w": 150,
+							"h": 150,
+							"resize": "crop"
+						},
+						"large": {
+							"w": 2048,
+							"h": 1536,
+							"resize": "fit"
+						},
+						"medium": {
+							"w": 1200,
+							"h": 900,
+							"resize": "fit"
+						},
+						"small": {
+							"w": 680,
+							"h": 510,
+							"resize": "fit"
+						}
+					},
+					"video_info": {
+						"aspect_ratio": [
+							0,
+							0
+						],
+						"duration_millis": 0,
+						"variants": null
+					}
+				}
+			],
+			"urls": [
+				{
+					"indices": [
+						35,
+						58
+					],
+					"display_url": "bit.ly/2pUk4be",
+					"expanded_url": "http://bit.ly/2pUk4be",
+					"url": "https://t.co/RzmrQ6wAzD"
+				}
+			],
+			"user_mentions": [
+				{
+					"indices": [
+						16,
+						28
+					],
+					"id": 50247739,
+					"id_str": "50247739",
+					"name": "Just Me",
+					"screen_name": "MentionThis"
+				}
+			]
 		},
-		"favorite_count": 0,
+		"favorite_count": 8,
 		"favorited": false,
 		"filter_level": "",
-		"id": 771086722629111809,
-		"id_str": "771086722629111809",
+		"id": 861627479294746624,
+		"id_str": "861627479294746624",
 		"in_reply_to_screen_name": "",
 		"in_reply_to_status_id": 0,
 		"in_reply_to_status_id_str": "",
@@ -187,16 +246,16 @@
 		"possibly_sensitive": false,
 		"quote_count": 0,
 		"reply_count": 0,
-		"retweet_count": 0,
+		"retweet_count": 6,
 		"retweeted": false,
 		"retweeted_status": null,
 		"source": "\u003ca href=\"http://twitter.com/download/iphone\" rel=\"nofollow\"\u003eTwitter for iPhone\u003c/a\u003e",
 		"scopes": null,
 		"text": "",
-		"full_text": "If this tweet triggers code in my  test code I will be on to coding part 2 #iot_test",
+		"full_text": "Test Tweet with @mentionThis $twtr https://t.co/RzmrQ6wAzD #hashtag https://t.co/9r69akA484",
 		"display_text_range": [
 			0,
-			84
+			67
 		],
 		"place": {
 			"attributes": {},
@@ -295,7 +354,7 @@
 			"screen_name": "FloodSocial",
 			"show_all_inline_media": false,
 			"status": null,
-			"statuses_count": 274,
+			"statuses_count": 276,
 			"time_zone": "",
 			"url": "https://t.co/POuXe2L3ur",
 			"utc_offset": 0,
@@ -306,7 +365,194 @@
 		"withheld_copyright": false,
 		"withheld_in_countries": null,
 		"withheld_scope": "",
-		"extended_entities": null,
+		"extended_entities": {
+			"media": [
+				{
+					"indices": [
+						68,
+						91
+					],
+					"display_url": "pic.twitter.com/9r69akA484",
+					"expanded_url": "https://twitter.com/FloodSocial/status/861627479294746624/photo/1",
+					"url": "https://t.co/9r69akA484",
+					"id": 861627472244162561,
+					"id_str": "861627472244162561",
+					"media_url": "http://pbs.twimg.com/media/C_UdnvPUwAE3Dnn.jpg",
+					"media_url_https": "https://pbs.twimg.com/media/C_UdnvPUwAE3Dnn.jpg",
+					"source_status_id": 0,
+					"source_status_id_str": "",
+					"type": "photo",
+					"sizes": {
+						"thumb": {
+							"w": 150,
+							"h": 150,
+							"resize": "crop"
+						},
+						"large": {
+							"w": 2048,
+							"h": 1536,
+							"resize": "fit"
+						},
+						"medium": {
+							"w": 1200,
+							"h": 900,
+							"resize": "fit"
+						},
+						"small": {
+							"w": 680,
+							"h": 510,
+							"resize": "fit"
+						}
+					},
+					"video_info": {
+						"aspect_ratio": [
+							0,
+							0
+						],
+						"duration_millis": 0,
+						"variants": null
+					}
+				},
+				{
+					"indices": [
+						68,
+						91
+					],
+					"display_url": "pic.twitter.com/9r69akA484",
+					"expanded_url": "https://twitter.com/FloodSocial/status/861627479294746624/photo/1",
+					"url": "https://t.co/9r69akA484",
+					"id": 861627472244203520,
+					"id_str": "861627472244203520",
+					"media_url": "http://pbs.twimg.com/media/C_UdnvPVYAAZbEs.jpg",
+					"media_url_https": "https://pbs.twimg.com/media/C_UdnvPVYAAZbEs.jpg",
+					"source_status_id": 0,
+					"source_status_id_str": "",
+					"type": "photo",
+					"sizes": {
+						"thumb": {
+							"w": 150,
+							"h": 150,
+							"resize": "crop"
+						},
+						"large": {
+							"w": 2048,
+							"h": 2048,
+							"resize": "fit"
+						},
+						"medium": {
+							"w": 1200,
+							"h": 1200,
+							"resize": "fit"
+						},
+						"small": {
+							"w": 680,
+							"h": 680,
+							"resize": "fit"
+						}
+					},
+					"video_info": {
+						"aspect_ratio": [
+							0,
+							0
+						],
+						"duration_millis": 0,
+						"variants": null
+					}
+				},
+				{
+					"indices": [
+						68,
+						91
+					],
+					"display_url": "pic.twitter.com/9r69akA484",
+					"expanded_url": "https://twitter.com/FloodSocial/status/861627479294746624/photo/1",
+					"url": "https://t.co/9r69akA484",
+					"id": 861627474144149504,
+					"id_str": "861627474144149504",
+					"media_url": "http://pbs.twimg.com/media/C_Udn2UUQAADZIS.jpg",
+					"media_url_https": "https://pbs.twimg.com/media/C_Udn2UUQAADZIS.jpg",
+					"source_status_id": 0,
+					"source_status_id_str": "",
+					"type": "photo",
+					"sizes": {
+						"thumb": {
+							"w": 150,
+							"h": 150,
+							"resize": "crop"
+						},
+						"large": {
+							"w": 2048,
+							"h": 1536,
+							"resize": "fit"
+						},
+						"medium": {
+							"w": 1200,
+							"h": 900,
+							"resize": "fit"
+						},
+						"small": {
+							"w": 680,
+							"h": 510,
+							"resize": "fit"
+						}
+					},
+					"video_info": {
+						"aspect_ratio": [
+							0,
+							0
+						],
+						"duration_millis": 0,
+						"variants": null
+					}
+				},
+				{
+					"indices": [
+						68,
+						91
+					],
+					"display_url": "pic.twitter.com/9r69akA484",
+					"expanded_url": "https://twitter.com/FloodSocial/status/861627479294746624/photo/1",
+					"url": "https://t.co/9r69akA484",
+					"id": 861627474760708096,
+					"id_str": "861627474760708096",
+					"media_url": "http://pbs.twimg.com/media/C_Udn4nUMAAgcIa.jpg",
+					"media_url_https": "https://pbs.twimg.com/media/C_Udn4nUMAAgcIa.jpg",
+					"source_status_id": 0,
+					"source_status_id_str": "",
+					"type": "photo",
+					"sizes": {
+						"thumb": {
+							"w": 150,
+							"h": 150,
+							"resize": "crop"
+						},
+						"large": {
+							"w": 2048,
+							"h": 2048,
+							"resize": "fit"
+						},
+						"medium": {
+							"w": 1200,
+							"h": 1200,
+							"resize": "fit"
+						},
+						"small": {
+							"w": 680,
+							"h": 680,
+							"resize": "fit"
+						}
+					},
+					"video_info": {
+						"aspect_ratio": [
+							0,
+							0
+						],
+						"duration_millis": 0,
+						"variants": null
+					}
+				}
+			]
+		},
 		"extended_tweet": null,
 		"quoted_status_id": 0,
 		"quoted_status_id_str": "",

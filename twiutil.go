@@ -10,6 +10,11 @@ import (
 	"github.com/dghubble/go-twitter/twitter"
 )
 
+func GetTweet(client *twitter.Client, id int64) (tweet *twitter.Tweet, err error) {
+	tweet, _, err = client.Statuses.Show(id, &twitter.StatusShowParams{TweetMode: "extended"})
+	return
+}
+
 func FindUrlAll(text string) (urls []string) {
 	regexTwitterUrl := regexp.MustCompile(`https?://twitter\.com(/\w+)?/status(es)?/\d+`)
 	return regexTwitterUrl.FindAllString(text, -1)
@@ -21,7 +26,6 @@ func FindIdAll(s string) (ids []int64) {
 		return
 	}
 
-	ids = make([]int64, 0)
 	for _, uStr := range urlsStr {
 		url, _ := urlmod.Parse(uStr)
 		idStr := url.Path[strings.LastIndex(url.Path, "/")+1:]
@@ -42,11 +46,6 @@ func FindId(s string) (id int64) {
 	return
 }
 
-type MediaUrl struct {
-	Url  string
-	Type string
-}
-
 func GetVideoUrl(media twitter.MediaEntity) (url string) {
 	if len(media.VideoInfo.Variants) == 0 {
 		return
@@ -64,45 +63,14 @@ func GetVideoUrl(media twitter.MediaEntity) (url string) {
 	return
 }
 
-func GetMediaUrls(tweet twitter.Tweet) (urls []MediaUrl) {
-	urls = make([]MediaUrl, 0, 4)
-	if tweet.ExtendedEntities == nil {
+func GetMediaUrls(tweet *twitter.Tweet) (urls []string) {
+	if !HasMedia(tweet) {
 		return
 	}
 
 	medias := tweet.ExtendedEntities.Media
 	for _, media := range medias {
 		switch {
-
-		case len(media.VideoInfo.Variants) == 0:
-			u := MediaUrl{
-				Url:  media.MediaURLHttps,
-				Type: media.Type,
-			}
-			urls = append(urls, u)
-
-		case len(media.VideoInfo.Variants) > 0:
-			u := MediaUrl{
-				Url:  GetVideoUrl(media),
-				Type: media.Type,
-			}
-			urls = append(urls, u)
-
-		}
-	}
-	return urls
-}
-
-func GetMediaUrlsString(tweet twitter.Tweet) (urls []string) {
-	urls = make([]string, 0, 4)
-	if tweet.ExtendedEntities == nil {
-		return
-	}
-
-	medias := tweet.ExtendedEntities.Media
-	for _, media := range medias {
-		switch {
-
 		// photo
 		case len(media.VideoInfo.Variants) == 0:
 			urls = append(urls, media.MediaURLHttps)
@@ -115,6 +83,38 @@ func GetMediaUrlsString(tweet twitter.Tweet) (urls []string) {
 	return urls
 }
 
-func HasMedia(tweet twitter.Tweet) bool {
+func GetMediaTypes(tweet *twitter.Tweet) (types []string) {
+	if !HasMedia(tweet) {
+		return
+	}
+
+	medias := tweet.ExtendedEntities.Media
+	for _, media := range medias {
+		types = append(types, media.Type)
+	}
+	return types
+}
+
+func HasMedia(tweet *twitter.Tweet) bool {
 	return tweet.ExtendedEntities != nil && len(tweet.ExtendedEntities.Media) > 0
+}
+
+func HasQuotedTweet(tweet *twitter.Tweet) bool {
+	if tweet.QuotedStatus == nil {
+		return false
+	} else {
+		return true
+	}
+}
+
+func GetQuotedTweetUrl(tweet *twitter.Tweet) string {
+	if !HasQuotedTweet(tweet) {
+		return ""
+	}
+	return "https://twitter.com/i/status/" + tweet.QuotedStatusIDStr
+}
+
+func GetSource(tweet *twitter.Tweet) (source string) {
+	source = strings.Split(strings.Split(tweet.Source, ">")[1], "<")[0]
+	return
 }

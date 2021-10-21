@@ -30,6 +30,7 @@ func createDummyTweet() (map[string]*twitter.Tweet, error) {
 		"tweet-movie.json",
 		"tweet-photo.json",
 		"tweet-quoted.json",
+		"tweet-quoted-photo.json",
 	}
 	tweets := make(map[string]*twitter.Tweet, len(fnames))
 	for _, fname := range fnames {
@@ -43,70 +44,49 @@ func createDummyTweet() (map[string]*twitter.Tweet, error) {
 	return tweets, nil
 }
 
-func TestFindIdAll(t *testing.T) {
+func TestHasMedia(t *testing.T) {
+	tweets, err := createDummyTweet()
+	if err != nil {
+		assert.Fail(t, "cannot create dummy tweet.")
+	}
+
 	type args struct {
-		url string
+		tweet *twitter.Tweet
 	}
 	tests := []struct {
 		name string
 		args args
-		want []int64
+		want bool
 	}{
 		{
-			name: "normal",
-			args: args{url: "asdfhttps://twitter.com/FloodSocial/status/861627479294746624giuewr"},
-			want: []int64{861627479294746624},
+			name: "gif",
+			args: args{tweets["gif"]},
+			want: true,
 		},
 		{
-			name: "query",
-			args: args{url: "asdfghhttps://twitter.com/i/statuses/861627479294746624?s=20"},
-			want: []int64{861627479294746624},
+			name: "linked",
+			args: args{tweets["linked"]},
+			want: false,
 		},
 		{
-			name: "short",
-			args: args{url: "http://twitter.com/status/861627479294746624"},
-			want: []int64{861627479294746624},
+			name: "movie",
+			args: args{tweets["movie"]},
+			want: true,
 		},
 		{
-			name: "multi",
-			args: args{url: "https://twitter.com/FloodSocial/status/1440105622737854464?s=20\nasdfhhttp://twitter.com/status/861627479294746624?s=afw"},
-			want: []int64{1440105622737854464, 861627479294746624},
+			name: "photo",
+			args: args{tweets["photo"]},
+			want: true,
+		},
+		{
+			name: "quoted",
+			args: args{tweets["quoted"]},
+			want: false,
 		},
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, FindIdAll(tt.args.url))
-	}
-}
-
-func TestFindId(t *testing.T) {
-	type args struct {
-		url string
-	}
-	tests := []struct {
-		name string
-		args args
-		want int64
-	}{
-		{
-			name: "normal",
-			args: args{url: "asdfhttps://twitter.com/FloodSocial/status/861627479294746624giuewr"},
-			want: 861627479294746624,
-		},
-		{
-			name: "query",
-			args: args{url: "asdfghhttps://twitter.com/i/statuses/861627479294746624?s=20"},
-			want: 861627479294746624,
-		},
-		{
-			name: "short",
-			args: args{url: "asdfhhttp://twitter.com/status/861627479294746624?s=afw"},
-			want: 861627479294746624,
-		},
-	}
-
-	for _, tt := range tests {
-		assert.Equal(t, tt.want, FindId(tt.args.url))
+		assert.Equal(t, tt.want, HasMedia(tt.args.tweet), tt.name)
 	}
 }
 
@@ -142,7 +122,74 @@ func TestFindUrlAll(t *testing.T) {
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, FindUrlAll(tt.args.url))
+		assert.Equal(t, tt.want, FindUrlAll(tt.args.url), tt.name)
+	}
+}
+
+func TestFindIdAll(t *testing.T) {
+	type args struct {
+		url string
+	}
+	tests := []struct {
+		name string
+		args args
+		want []int64
+	}{
+		{
+			name: "normal",
+			args: args{url: "asdfhttps://twitter.com/FloodSocial/status/861627479294746624giuewr"},
+			want: []int64{861627479294746624},
+		},
+		{
+			name: "query",
+			args: args{url: "asdfghhttps://twitter.com/i/statuses/861627479294746624?s=20"},
+			want: []int64{861627479294746624},
+		},
+		{
+			name: "short",
+			args: args{url: "http://twitter.com/status/861627479294746624"},
+			want: []int64{861627479294746624},
+		},
+		{
+			name: "multi",
+			args: args{url: "https://twitter.com/FloodSocial/status/1440105622737854464?s=20\nasdfhhttp://twitter.com/status/861627479294746624?s=afw"},
+			want: []int64{1440105622737854464, 861627479294746624},
+		},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(t, tt.want, FindIdAll(tt.args.url), tt.name)
+	}
+}
+
+func TestFindId(t *testing.T) {
+	type args struct {
+		url string
+	}
+	tests := []struct {
+		name string
+		args args
+		want int64
+	}{
+		{
+			name: "normal",
+			args: args{url: "asdfhttps://twitter.com/FloodSocial/status/861627479294746624giuewr"},
+			want: 861627479294746624,
+		},
+		{
+			name: "query",
+			args: args{url: "asdfghhttps://twitter.com/i/statuses/861627479294746624?s=20"},
+			want: 861627479294746624,
+		},
+		{
+			name: "short",
+			args: args{url: "asdfhhttp://twitter.com/status/861627479294746624?s=afw"},
+			want: 861627479294746624,
+		},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(t, tt.want, FindId(tt.args.url), tt.name)
 	}
 }
 
@@ -153,75 +200,7 @@ func TestGetMediaUrls(t *testing.T) {
 	}
 
 	type args struct {
-		tweet twitter.Tweet
-	}
-	tests := []struct {
-		name string
-		args args
-		want []MediaUrl
-	}{
-		{
-			name: "gif",
-			args: args{*tweets["gif"]},
-			want: []MediaUrl{
-				{
-					Url:  "https://video.twimg.com/tweet_video/DBMDLy_U0AAqUWP.mp4",
-					Type: "animated_gif",
-				},
-			},
-		},
-		{
-			name: "linked",
-			args: args{*tweets["linked"]},
-			want: []MediaUrl{},
-		},
-		{
-			name: "movie",
-			args: args{*tweets["movie"]},
-			want: []MediaUrl{
-				{
-					Url:  "https://video.twimg.com/ext_tw_video/869317980307415040/pu/vid/720x1280/octt5pFbISkef8RB.mp4",
-					Type: "video",
-				},
-			},
-		},
-		{
-			name: "photo",
-			args: args{*tweets["photo"]},
-			want: []MediaUrl{
-				{
-					Url:  "https://pbs.twimg.com/media/C_UdnvPUwAE3Dnn.jpg",
-					Type: "photo",
-				},
-				{
-					Url:  "https://pbs.twimg.com/media/C_UdnvPVYAAZbEs.jpg",
-					Type: "photo",
-				},
-				{
-					Url:  "https://pbs.twimg.com/media/C_Udn2UUQAADZIS.jpg",
-					Type: "photo",
-				},
-				{
-					Url:  "https://pbs.twimg.com/media/C_Udn4nUMAAgcIa.jpg",
-					Type: "photo",
-				},
-			},
-		},
-	}
-
-	for _, tt := range tests {
-		assert.Equal(t, tt.want, GetMediaUrls(tt.args.tweet))
-	}
-}
-
-func TestGetMediaUrlsString(t *testing.T) {
-	tweets, err := createDummyTweet()
-	if err != nil {
-		assert.Fail(t, "cannot create dummy tweet.")
-	}
-
-	type args struct {
-		tweet twitter.Tweet
+		tweet *twitter.Tweet
 	}
 	tests := []struct {
 		name string
@@ -230,26 +209,26 @@ func TestGetMediaUrlsString(t *testing.T) {
 	}{
 		{
 			name: "gif",
-			args: args{*tweets["gif"]},
+			args: args{tweets["gif"]},
 			want: []string{
 				"https://video.twimg.com/tweet_video/DBMDLy_U0AAqUWP.mp4",
 			},
 		},
 		{
 			name: "linked",
-			args: args{*tweets["linked"]},
-			want: []string{},
+			args: args{tweets["linked"]},
+			want: nil,
 		},
 		{
 			name: "movie",
-			args: args{*tweets["movie"]},
+			args: args{tweets["movie"]},
 			want: []string{
 				"https://video.twimg.com/ext_tw_video/869317980307415040/pu/vid/720x1280/octt5pFbISkef8RB.mp4",
 			},
 		},
 		{
 			name: "photo",
-			args: args{*tweets["photo"]},
+			args: args{tweets["photo"]},
 			want: []string{
 				"https://pbs.twimg.com/media/C_UdnvPUwAE3Dnn.jpg",
 				"https://pbs.twimg.com/media/C_UdnvPVYAAZbEs.jpg",
@@ -257,21 +236,95 @@ func TestGetMediaUrlsString(t *testing.T) {
 				"https://pbs.twimg.com/media/C_Udn4nUMAAgcIa.jpg",
 			},
 		},
+		{
+			name: "quoted",
+			args: args{tweets["quoted"]},
+			want: nil,
+		},
+		{
+			name: "quoted-photo",
+			args: args{tweets["quoted-photo"]},
+			want: []string{
+				"https://pbs.twimg.com/media/FCI9C0tVkAIu2wS.png",
+				"https://pbs.twimg.com/media/FCI9C0sUYAAMPwf.png",
+				"https://pbs.twimg.com/media/FCI9C1QVIAAnLTo.png",
+			},
+		},
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, GetMediaUrlsString(tt.args.tweet))
+		assert.Equal(t, tt.want, GetMediaUrls(tt.args.tweet), tt.name)
 	}
 }
 
-func TestHasMedia(t *testing.T) {
+func TestGetMediaTypes(t *testing.T) {
 	tweets, err := createDummyTweet()
 	if err != nil {
 		assert.Fail(t, "cannot create dummy tweet.")
 	}
 
 	type args struct {
-		tweet twitter.Tweet
+		tweet *twitter.Tweet
+	}
+	tests := []struct {
+		name string
+		args args
+		want []string
+	}{
+		{
+			name: "gif",
+			args: args{tweets["gif"]},
+			want: []string{"animated_gif"},
+		},
+		{
+			name: "linked",
+			args: args{tweets["linked"]},
+			want: nil,
+		},
+		{
+			name: "movie",
+			args: args{tweets["movie"]},
+			want: []string{"video"},
+		},
+		{
+			name: "photo",
+			args: args{tweets["photo"]},
+			want: []string{
+				"photo",
+				"photo",
+				"photo",
+				"photo",
+			},
+		},
+		{
+			name: "quoted",
+			args: args{tweets["quoted"]},
+			want: nil,
+		},
+		{
+			name: "quoted-photo",
+			args: args{tweets["quoted-photo"]},
+			want: []string{
+				"photo",
+				"photo",
+				"photo",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(t, tt.want, GetMediaTypes(tt.args.tweet), tt.name)
+	}
+}
+
+func TestHasQuotedTweet(t *testing.T) {
+	tweets, err := createDummyTweet()
+	if err != nil {
+		assert.Fail(t, "cannot create dummy tweet.")
+	}
+
+	type args struct {
+		tweet *twitter.Tweet
 	}
 	tests := []struct {
 		name string
@@ -279,33 +332,69 @@ func TestHasMedia(t *testing.T) {
 		want bool
 	}{
 		{
-			name: "gif",
-			args: args{*tweets["gif"]},
-			want: true,
-		},
-		{
 			name: "linked",
-			args: args{*tweets["linked"]},
+			args: args{tweets["linked"]},
 			want: false,
-		},
-		{
-			name: "movie",
-			args: args{*tweets["movie"]},
-			want: true,
 		},
 		{
 			name: "photo",
-			args: args{*tweets["photo"]},
-			want: true,
+			args: args{tweets["photo"]},
+			want: false,
 		},
 		{
 			name: "quoted",
-			args: args{*tweets["quoted"]},
-			want: false,
+			args: args{tweets["quoted"]},
+			want: true,
+		},
+		{
+			name: "quoted-photo",
+			args: args{tweets["quoted-photo"]},
+			want: true,
 		},
 	}
 
 	for _, tt := range tests {
-		assert.Equal(t, tt.want, HasMedia(tt.args.tweet))
+		assert.Equal(t, tt.want, HasQuotedTweet(tt.args.tweet), tt.name)
+	}
+}
+
+func TestGetSource(t *testing.T) {
+	tweets, err := createDummyTweet()
+	if err != nil {
+		assert.Fail(t, "cannot create dummy tweet.")
+	}
+
+	type args struct {
+		tweet *twitter.Tweet
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "linked",
+			args: args{tweets["linked"]},
+			want: "Twitter Web Client",
+		},
+		{
+			name: "photo",
+			args: args{tweets["photo"]},
+			want: "Twitter for iPhone",
+		},
+		{
+			name: "quoted",
+			args: args{tweets["quoted"]},
+			want: "Twitter Web Client",
+		},
+		{
+			name: "quoted-photo",
+			args: args{tweets["quoted-photo"]},
+			want: "Twitter Web App",
+		},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(t, tt.want, GetSource(tt.args.tweet), tt.name)
 	}
 }
