@@ -30,6 +30,7 @@ func createDummyTweet() (map[string]*twitter.Tweet, error) {
 		"tweet-movie.json",
 		"tweet-photo.json",
 		"tweet-quoted.json",
+		"tweet-quoted-photo.json",
 	}
 	tweets := make(map[string]*twitter.Tweet, len(fnames))
 	for _, fname := range fnames {
@@ -235,6 +236,20 @@ func TestGetMediaUrls(t *testing.T) {
 				"https://pbs.twimg.com/media/C_Udn4nUMAAgcIa.jpg",
 			},
 		},
+		{
+			name: "quoted",
+			args: args{tweets["quoted"]},
+			want: nil,
+		},
+		{
+			name: "quoted-photo",
+			args: args{tweets["quoted-photo"]},
+			want: []string{
+				"https://pbs.twimg.com/media/FCI9C0tVkAIu2wS.png",
+				"https://pbs.twimg.com/media/FCI9C0sUYAAMPwf.png",
+				"https://pbs.twimg.com/media/FCI9C1QVIAAnLTo.png",
+			},
+		},
 	}
 
 	for _, tt := range tests {
@@ -281,9 +296,64 @@ func TestGetMediaTypes(t *testing.T) {
 				"photo",
 			},
 		},
+		{
+			name: "quoted",
+			args: args{tweets["quoted"]},
+			want: nil,
+		},
+		{
+			name: "quoted-photo",
+			args: args{tweets["quoted-photo"]},
+			want: []string{
+				"photo",
+				"photo",
+				"photo",
+			},
+		},
 	}
 
 	for _, tt := range tests {
 		assert.Equal(t, tt.want, GetMediaTypes(tt.args.tweet))
+	}
+}
+
+func TestHasQuotedTweet(t *testing.T) {
+	tweets, err := createDummyTweet()
+	if err != nil {
+		assert.Fail(t, "cannot create dummy tweet.")
+	}
+
+	type args struct {
+		tweet *twitter.Tweet
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		{
+			name: "linked",
+			args: args{tweets["linked"]},
+			want: false,
+		},
+		{
+			name: "photo",
+			args: args{tweets["photo"]},
+			want: false,
+		},
+		{
+			name: "quoted",
+			args: args{tweets["quoted"]},
+			want: true,
+		},
+		{
+			name: "quoted-photo",
+			args: args{tweets["quoted-photo"]},
+			want: true,
+		},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(t, tt.want, HasQuotedTweet(tt.args.tweet), tt.name, tt.args.tweet)
 	}
 }

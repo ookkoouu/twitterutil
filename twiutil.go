@@ -93,3 +93,11 @@ func GetMediaTypes(tweet *twitter.Tweet) (types []string) {
 func HasMedia(tweet *twitter.Tweet) bool {
 	return tweet.ExtendedEntities != nil && len(tweet.ExtendedEntities.Media) > 0
 }
+
+func HasQuotedTweet(tweet *twitter.Tweet) bool {
+	if tweet.QuotedStatus == nil {
+		return false
+	} else {
+		return true
+	}
+}
