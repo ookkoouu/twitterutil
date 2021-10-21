@@ -264,6 +264,52 @@ func TestGetMediaUrlsString(t *testing.T) {
 	}
 }
 
+func TestGetMediaTypes(t *testing.T) {
+	tweets, err := createDummyTweet()
+	if err != nil {
+		assert.Fail(t, "cannot create dummy tweet.")
+	}
+
+	type args struct {
+		tweet twitter.Tweet
+	}
+	tests := []struct {
+		name string
+		args args
+		want []string
+	}{
+		{
+			name: "gif",
+			args: args{*tweets["gif"]},
+			want: []string{"animated_gif"},
+		},
+		{
+			name: "linked",
+			args: args{*tweets["linked"]},
+			want: []string{},
+		},
+		{
+			name: "movie",
+			args: args{*tweets["movie"]},
+			want: []string{"video"},
+		},
+		{
+			name: "photo",
+			args: args{*tweets["photo"]},
+			want: []string{
+				"photo",
+				"photo",
+				"photo",
+				"photo",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(t, tt.want, GetMediaTypes(tt.args.tweet))
+	}
+}
+
 func TestHasMedia(t *testing.T) {
 	tweets, err := createDummyTweet()
 	if err != nil {

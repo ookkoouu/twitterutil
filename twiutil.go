@@ -115,6 +115,19 @@ func GetMediaUrlsString(tweet twitter.Tweet) (urls []string) {
 	return urls
 }
 
+func GetMediaTypes(tweet twitter.Tweet) (types []string) {
+	types = make([]string, 0)
+	if tweet.ExtendedEntities == nil {
+		return
+	}
+
+	medias := tweet.ExtendedEntities.Media
+	for _, media := range medias {
+		types = append(types, media.Type)
+	}
+	return types
+}
+
 func HasMedia(tweet twitter.Tweet) bool {
 	return tweet.ExtendedEntities != nil && len(tweet.ExtendedEntities.Media) > 0
 }
