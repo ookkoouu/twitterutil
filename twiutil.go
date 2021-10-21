@@ -113,3 +113,8 @@ func GetQuotedTweetUrl(tweet *twitter.Tweet) string {
 	}
 	return "https://twitter.com/i/status/" + tweet.QuotedStatusIDStr
 }
+
+func GetSource(tweet *twitter.Tweet) (source string) {
+	source = strings.Split(strings.Split(tweet.Source, ">")[1], "<")[0]
+	return
+}

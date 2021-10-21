@@ -357,3 +357,44 @@ func TestHasQuotedTweet(t *testing.T) {
 		assert.Equal(t, tt.want, HasQuotedTweet(tt.args.tweet), tt.name, tt.args.tweet)
 	}
 }
+
+func TestGetSource(t *testing.T) {
+	tweets, err := createDummyTweet()
+	if err != nil {
+		assert.Fail(t, "cannot create dummy tweet.")
+	}
+
+	type args struct {
+		tweet *twitter.Tweet
+	}
+	tests := []struct {
+		name string
+		args args
+		want string
+	}{
+		{
+			name: "linked",
+			args: args{tweets["linked"]},
+			want: "Twitter Web Client",
+		},
+		{
+			name: "photo",
+			args: args{tweets["photo"]},
+			want: "Twitter for iPhone",
+		},
+		{
+			name: "quoted",
+			args: args{tweets["quoted"]},
+			want: "Twitter Web Client",
+		},
+		{
+			name: "quoted-photo",
+			args: args{tweets["quoted-photo"]},
+			want: "Twitter Web App",
+		},
+	}
+
+	for _, tt := range tests {
+		assert.Equal(t, tt.want, GetSource(tt.args.tweet), tt.name, tt.args.tweet)
+	}
+}
